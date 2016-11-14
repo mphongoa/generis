@@ -25,7 +25,7 @@ public class EmailHelper {
 	}
 	
 	public static Session getSenderSession(){
-		return getSenderSession("smtp.gmail.com", "campaign.g@gmail.com", "i love java more");
+		return getSenderSession("smtp.gmail.com", "***@gmai.com", "******");
 	}
 	
 	public static Store getEmailStore(String host, final String user, final String password) throws MessagingException{
