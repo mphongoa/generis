@@ -2,45 +2,64 @@ package com.generis.model;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import org.junit.runners.MethodSorters;
+
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserDAOTests {
 
 	UserDAO userDAO = new UserDAO();
 	
 	@Test
-	public void testSave() {
+	public void test1Save() {
 		User user = new User();
 		user.setDisplayName("Thabo Lebese");
 		user.setEmail("thabo@gmail.com");
 		user.setPassword("111111");
 		userDAO.save(user);
-		assertEquals(user.getId(), 1);
+		assertTrue(user.getId() > 0);
 	}
 
 	@Test
-	public void testGetByID() {
-		fail("Not yet implemented");
+	public void test2GetByID() {
+		int id = 1;
+		User user = userDAO.get(id);
+		assertEquals(user.getId(), id);
 	}
 
 	@Test
-	public void testGetByEmail() {
-		fail("Not yet implemented");
+	public void test3GetByEmail() {
+		String email = "thabo@gmail.com";
+		User user = userDAO.get(email);
+		assertEquals(user.getEmail(), email);
 	}
 
 	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
+	public void test4Update() {
+		User user = userDAO.get(1);
+		assertEquals("1st ensure that user is Thabo Lebese", 
+				"Thabo Lebese", user.getDisplayName());
+		String newName = "Lerato Lebese";
+		user.setDisplayName(newName);
+		assertEquals(newName, user.getDisplayName());
 	}
 
 	@Test
-	public void testDelete() {
-		fail("Not yet implemented");
+	public void test5List() {
+		List<User> users = userDAO.list();
+		assertTrue(users.size() >= 1);
 	}
-
+	
 	@Test
-	public void testList() {
-		fail("Not yet implemented");
+	public void test6Delete() {
+		User user = userDAO.get(1);
+		assertEquals("1st ensure that user is Thabo Lebese", 
+				"Thabo Lebese", user.getDisplayName());
+		userDAO.delete(user);
+		assertNull(user);
 	}
 
 }

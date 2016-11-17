@@ -46,7 +46,9 @@ public class UserDAO {
 					" where user.id = :id";
 			Query query = session.createQuery(strQuery);
 			query.setInteger("id", id);
-			user = (User) query.list().get(0);
+			if(query.list().size() > 0){
+				user = (User) query.list().get(0);
+			}
 		}
 		catch(Exception ex){
 			logger.error("Error retrieving User object: "+ ex);
