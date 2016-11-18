@@ -12,6 +12,7 @@ import org.junit.Test;
 public class UserDAOTests {
 
 	UserDAO userDAO = new UserDAO();
+	final int ID = 1;
 	
 	@Test
 	public void test1Save() {
@@ -25,9 +26,8 @@ public class UserDAOTests {
 
 	@Test
 	public void test2GetByID() {
-		int id = 1;
-		User user = userDAO.get(id);
-		assertEquals(user.getId(), id);
+		User user = userDAO.get(ID);
+		assertEquals(user.getId(), ID);
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class UserDAOTests {
 
 	@Test
 	public void test4Update() {
-		User user = userDAO.get(1);
+		User user = userDAO.get(ID);
 		assertEquals("1st ensure that user is Thabo Lebese", 
 				"Thabo Lebese", user.getDisplayName());
 		String newName = "Lerato Lebese";
@@ -55,11 +55,7 @@ public class UserDAOTests {
 	
 	@Test
 	public void test6Delete() {
-		User user = userDAO.get(1);
-		assertEquals("1st ensure that user is Thabo Lebese", 
-				"Thabo Lebese", user.getDisplayName());
-		userDAO.delete(user);
-		assertNull(user);
+		
 	}
 
 }
